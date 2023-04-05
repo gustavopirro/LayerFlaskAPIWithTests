@@ -15,6 +15,13 @@ class __PokemonRepository(PokemonRepositoryInterface):
             except Exception as exception:
                 db.session.rollback()
                 raise exception
+    
+    def get(self, name):
+        with DBConnectionHandler() as db:
+            pokemon = db.session.query(Pokemon).filter_by(name=name).first()
+            if not pokemon:
+                raise Exception('Pokemon not found')
+            return pokemon
 
     def insert(self, name, attack):
         with DBConnectionHandler() as db:
@@ -26,7 +33,7 @@ class __PokemonRepository(PokemonRepositoryInterface):
                 raise EntityAlreadyExistsException("This entity id already exists at the database!")
             except Exception as exception:
                 db.session.rollback()
-                ErrorHandler(exception) 
+                raise exception
     
     def delete(self, name):
         with DBConnectionHandler() as db:
