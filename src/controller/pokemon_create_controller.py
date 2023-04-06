@@ -1,7 +1,6 @@
 from src.controller.interface.pokemon_create_controller_interface import PokemonCreateControllerInterface
 from src.model.repository.interface.pokemon_repository_interface import PokemonRepositoryInterface
 from src.validators.input_validator import InputValidator
-from src.validators.rules.pokemon_id_validator import pokemon_id_validator
 from typing import Type
 
 class PokemonCreateController(PokemonCreateControllerInterface):
